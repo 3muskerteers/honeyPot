@@ -53,7 +53,8 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-Mark  - [https://github.com/mark-kibo](https://github.com/mark-kibo)
-Adolph  - [https://github.com/adolphTech](https://github.com/adolphTech)
+1. Mark  - [https://github.com/mark-kibo](https://github.com/mark-kibo)
+2. Frank - [https://github.com/Frankmwangi](https://github.com/Frankmwangi)
+3. Adolph  - [https://github.com/adolphTech](https://github.com/adolphTech)
 
 Project Link: [https://github.com/3muskerteers/honeyPot](https://github.com/3muskerteers/honeyPot)
