@@ -1,13 +1,13 @@
 import jwt from 'jsonwebtoken';
 import {User} from '../../models/index.models.js';
-
+ 
 const protect = async (req, res, next) => {
   try {
     let token;
 
     //read JWT from the cookie
     token = req.cookies.jwt;
-    console.log(req.signedCookies.jwt)
+  
     
     if (token) {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
