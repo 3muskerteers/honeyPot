@@ -11,7 +11,8 @@ const protect = async (req, res, next) => {
     
     if (token) {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      req.user = await User.findById(decoded.id).select('-password');
+      req.user = await User.findById(decoded.userId).select('-password');
+      
       next();
     } else {
       res.status(401).json({ error: 'Not authorized, token is missing' });
@@ -26,7 +27,9 @@ const protect = async (req, res, next) => {
 // TODO :
 //FIX :ROLES NOT WORKING
 const admin = (req, res, next) => {
-  if(req.user && req.user.isAdmin){
+  console.log(req.user)
+ 
+  if(req.user && (req.user.role === "admin")){
     next();
   }else{
     res.status(401);
