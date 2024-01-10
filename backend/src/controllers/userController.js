@@ -1,5 +1,7 @@
 import { User } from '../../models/index.models.js';
-import jwt from 'jsonwebtoken';
+import generateToken from '../utils/generateToken.js';
+
+
 // @desc register user
 // @route POST api/users/REGISTER
 // @access Public
@@ -12,17 +14,8 @@ const authUser = async (req, res) => {
 
     try {
       if (user && (await user.matchPassword(password))) {
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-          expiresIn: '30d',
-        });
 
-        // set JWT as http only cookie
-        res.cookie('jwt', token, {
-          httpOnly: true,
-          secure: process.env.NODE_ENV !== 'development',
-          maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
-          sameSite: 'strict',
-        });
+        generateToken(res,user._id)
 
         res.json({
           _id: user._id,
@@ -51,10 +44,6 @@ const registerUser = async (req, res) => {
     const { name, email, password, contact, address, location, role } =
       req.body;
 
-    return res
-      .status(200)
-      .json({ name, email, password, contact, address, location, role });
-
     const userExists = await User.findOne({ email });
 
     if (userExists) {
@@ -72,12 +61,17 @@ const registerUser = async (req, res) => {
       role,
     });
 
+    //TODO : ERROR HANDLING ON REGISTER
+
     if (user) {
-      // generateToken(res, user._id);
+
+      generateToken(res, user._id);
+
       res.status(201).json({
         _id: user._id,
         name: user.name,
         email: user.email,
+        role:user.role
       });
     } else {
       res.status(400);
@@ -92,10 +86,15 @@ const registerUser = async (req, res) => {
 // @desc logout  user
 // @route POST api/users/logout
 // @access Private
-
+// FIX:
 const logoutUser = async (req, res) => {
   try {
-    res.send('logout user');
+    res.cookie("jwt", "", {
+      httpOnly: true,
+      expires:new Date(0)
+    })
+
+    res.status(200).json({message:"logged out successfully"})
   } catch (error) {
     res.status(500);
     throw new Error(error.message);
@@ -108,6 +107,7 @@ const logoutUser = async (req, res) => {
 
 const getUserProfile = async (req, res) => {
   try {
+    // console.log(req)
     res.send('get profile user');
   } catch (error) {
     res.status(500);
