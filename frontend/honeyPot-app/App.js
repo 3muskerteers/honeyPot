@@ -1,24 +1,57 @@
-import { View, Text } from 'react-native';
-import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from './screens/HomeScreen';
-import WelcomeScreen from './screens/WelcomeScreen';
+import { StatusBar } from 'expo-status-bar';
+
 import LoginScreen from './screens/LoginScreen';
-import SignUpScreen from './screens/SignUpScreen';
+import SignupScreen from './screens/SignUpScreen';
+import WelcomeScreen from './screens/WelcomeScreen';
+import { Colors } from './constants/styles';
 
 const Stack = createNativeStackNavigator();
 
+function AuthStack() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: { backgroundColor: Colors.primary500 },
+        headerTintColor: 'white',
+        contentStyle: { backgroundColor: Colors.primary100 },
+      }}
+    >
+      <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="Signup" component={SignupScreen} />
+    </Stack.Navigator>
+  );
+}
 
-export default function AppNavigation() {
+function AuthenticatedStack() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: { backgroundColor: Colors.primary500 },
+        headerTintColor: 'white',
+        contentStyle: { backgroundColor: Colors.primary100 },
+      }}
+    >
+      <Stack.Screen name="Welcome" component={WelcomeScreen} />
+    </Stack.Navigator>
+  );
+}
+
+function Navigation() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Welcome'>
-        <Stack.Screen name="Home" options={{headerShown: false}} component={HomeScreen} />
-        <Stack.Screen name="Welcome" options={{headerShown: false}} component={WelcomeScreen} />
-        <Stack.Screen name="Login" options={{headerShown: false}} component={LoginScreen} />
-        <Stack.Screen name="SignUp" options={{headerShown: false}} component={SignUpScreen} />
-      </Stack.Navigator>
+      <AuthStack />
     </NavigationContainer>
-  )
+  );
+}
+
+export default function App() {
+  return (
+    <>
+      <StatusBar style="light" />
+
+      <Navigation />
+    </>
+  );
 }
