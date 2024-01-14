@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { Login, Signup, Welcome } from "./screens";
 
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 
 import { StatusBar } from 'expo-status-bar';
 
@@ -44,6 +44,6 @@ export default function App() {
     </NavigationContainer>
   );
 }
-}
+
 
 
