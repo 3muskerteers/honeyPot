@@ -6,7 +6,7 @@ import generateToken from '../utils/generateToken.js';
 // @route POST api/users/REGISTER
 // @access Public
 
-const authUser = async (req, res) => {
+const authUser2 = async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -35,11 +35,35 @@ const authUser = async (req, res) => {
   }
 };
 
+const authUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    const user = await User.findOne({ email });
+
+    if (user && (await user.matchPassword(password))) {
+      const token = generateToken(user._id);
+
+      res.json({
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        token,
+      });
+    } else {
+      res.status(401).json({ error: 'Invalid email or password' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 // @desc register user
 // @route POST api/users/REGISTER
 // @access Public
 
-const registerUser = async (req, res) => {
+const registerUser2 = async (req, res) => {
   try {
     const { name, email, password, contact, address, location, role } =
       req.body;
@@ -83,6 +107,43 @@ const registerUser = async (req, res) => {
   }
 };
 
+const registerUser = async (req, res) => {
+  try {
+    const { name, email, password, contact, address, location, role } =
+      req.body;
+
+    const userExists = await User.findOne({ email });
+
+    if (userExists) {
+      res.status(400);
+      throw new Error('user already exists');
+    }
+
+    const user = await User.create({
+      name,
+      email,
+      password,
+      contact,
+      address,
+      location,
+      role,
+    });
+
+    if (user) {
+      const token = generateToken(user._id);
+
+      res.status(201).json({
+        token,
+        exp: 36000 // replace this with the actual expiration time of the token
+      });
+    } else {
+      res.status(400);
+      throw new Error('Invalid user data');
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
 // @desc logout  user
 // @route POST api/users/logout
 // @access Private
@@ -134,7 +195,8 @@ const updateUserProfile = async (req, res) => {
 
 const getUsers = async (req, res) => {
   try {
-    res.send('get users');
+    const users = await User.find({});
+    res.json(users);
   } catch (error) {
     res.status(500);
     throw new Error(error.message);

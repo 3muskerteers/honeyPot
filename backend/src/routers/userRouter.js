@@ -1,32 +1,29 @@
-import express from "express";
-import { protect, admin } from "../middlewares/authMiddleware.js";
-
-const router = express.Router();
+import express from 'express';
 import {
   authUser,
-  registerUser, 
-  logoutUser,
+  registerUser,
   getUserProfile,
   updateUserProfile,
   getUsers,
   deleteUser,
   getUserByID,
   updateUser,
-} from "../controllers/userController.js";
+} from '../controllers/userController.js';
+import { admin, authenticateToken } from '../middlewares/authMiddleware.js';
+const router = express.Router();
 
-// TODO: update admin routes
-router.route("/").post(registerUser).get(protect,admin,getUsers);
+router.route('/').post(registerUser).get(authenticateToken, getUsers);
 
-router.post("/logout", logoutUser);
-router.post("/auth", authUser);
+router.post('/logout', logoutUser);
+router.post('/auth', authUser);
 router
-  .route("/profile")
-  .get( protect,getUserProfile)
-  .put(protect, updateUserProfile);
+  .route('/profile')
+  .get(authenticateToken, getUserProfile) // use the middleware here
+  .put(authenticateToken, updateUserProfile); // and here
 router
-  .route("/:id")
-  .delete( deleteUser)
-  .get( getUserByID)
-  .put( updateUser);
+  .route('/:id')
+  .delete(authenticateToken, deleteUser) // and here
+  .get(authenticateToken, getUserByID) // and here
+  .put(authenticateToken, updateUser); // and here
 
 export default router;
