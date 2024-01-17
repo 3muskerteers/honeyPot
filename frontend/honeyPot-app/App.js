@@ -1,6 +1,7 @@
+
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Login, Welcome, Signup, Home } from './screens';
+import { createNativeStackNavigator } from "@react-navigation/native-stack"
+import { Login, Signup, Welcome } from "./screens";
 import { StatusBar } from 'expo-status-bar';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { Button } from 'react-native';
