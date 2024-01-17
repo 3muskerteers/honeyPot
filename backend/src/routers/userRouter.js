@@ -1,5 +1,5 @@
 import express from "express";
-import { protect, admin } from "../middlewares/authMiddleware.js";
+import { protect, admin,authenticateToken } from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
 import {
@@ -15,7 +15,7 @@ import {
 } from "../controllers/userController.js";
 
 // TODO: update admin routes
-router.route("/").post(registerUser).get(protect,admin,getUsers);
+router.route("/").post(registerUser).get(authenticateToken,getUsers);
 
 router.post("/logout", logoutUser);
 router.post("/auth", authUser);
