@@ -54,19 +54,6 @@ const Signup = ({ navigation }) => {
           </View>
         </View>
 
-        {/* <View style={styles.inputContainer}>
-          <Text style={styles.inputLabel}>Mobile Number</Text>
-          <View style={styles.inputWrapper}>
-          
-
-            <TextInput
-              placeholder='Enter your phone number'
-              placeholderTextColor={COLORS.black}
-              keyboardType='numeric'
-              style={styles.input}
-            />
-          </View>
-        </View> */}
 
         <View style={styles.inputContainer}>
           <Text style={styles.inputLabel}>Password</Text>
