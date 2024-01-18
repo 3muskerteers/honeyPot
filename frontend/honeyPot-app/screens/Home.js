@@ -29,7 +29,11 @@ const Home = () => {
     <ScrollView>
       {users.map((user) => (
         
-          <Text key={user._id}>{user._id}</Text>
+        <View>
+        
+          <Text style={{marginHorizontal:20}} key={user._id}>{user.email}</Text>
+            
+        </View>
        
       ))}
     </ScrollView>
