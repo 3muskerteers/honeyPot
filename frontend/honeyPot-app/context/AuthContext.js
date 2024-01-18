@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (email, password) => {
     try {
-      const response = await axios.post(`${API_URL}/users`, {
+      const response = await axios.post(`${API_URL}/api/users`, {
         email,
         password,
         name: "John Doe",
@@ -62,7 +62,7 @@ export const AuthProvider = ({ children }) => {
     console.log(`Logging in with email: ${email} and password: ${password}`);
   
     try {
-      const result = await axios.post(`${API_URL}/users/auth`, { email, password });
+      const result = await axios.post(`${API_URL}/api/users/auth`, { email, password });
       console.log('Response data:', result.data);
   
       setAuthState({
