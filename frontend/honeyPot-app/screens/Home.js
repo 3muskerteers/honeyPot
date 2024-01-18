@@ -16,7 +16,7 @@ const Home = () => {
         axios.defaults.headers.common.Authorization = `Bearer ${token}`;
         console.log({ token })
 
-        const result = await axios.get(`${API_URL}/users`);
+        const result = await axios.get(`${API_URL}/api/users`);
         console.log(result.data)
         setUsers(result.data);
       } catch (e) {
