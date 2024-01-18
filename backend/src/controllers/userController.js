@@ -1,27 +1,32 @@
 import { User } from '../../models/index.models.js';
 import generateToken from '../utils/generateToken.js';
+import jwt from 'jsonwebtoken';
 
 
 // @desc register user
 // @route POST api/users/REGISTER
 // @access Public
 
-const authUser2 = async (req, res) => {
+
+
+const authUser = async (req, res) => {
   try {
     const { email, password } = req.body;
+    console.log(email, password);
 
     const user = await User.findOne({ email });
+    // console.log(user)
 
     try {
       if (user && (await user.matchPassword(password))) {
-
-        generateToken(res,user._id)
+        const token = generateToken(user._id);
 
         res.json({
           _id: user._id,
           name: user.name,
           email: user.email,
           role: user.role,
+          token, // Include the token in the response
         });
       } else {
         res.status(401).json({ error: 'Invalid email or password' });
@@ -35,35 +40,11 @@ const authUser2 = async (req, res) => {
   }
 };
 
-const authUser = async (req, res) => {
-  try {
-    const { email, password } = req.body;
-
-    const user = await User.findOne({ email });
-
-    if (user && (await user.matchPassword(password))) {
-      const token = generateToken(user._id);
-
-      res.json({
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        role: user.role,
-        token,
-      });
-    } else {
-      res.status(401).json({ error: 'Invalid email or password' });
-    }
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
-
 // @desc register user
 // @route POST api/users/REGISTER
 // @access Public
 
-const registerUser2 = async (req, res) => {
+const registerUser = async (req, res) => {
   try {
     const { name, email, password, contact, address, location, role } =
       req.body;
@@ -71,8 +52,7 @@ const registerUser2 = async (req, res) => {
     const userExists = await User.findOne({ email });
 
     if (userExists) {
-      res.status(400);
-      throw new Error('user already exists');
+      return res.status(400).json({ error: 'User already exists' });
     }
 
     const user = await User.create({
@@ -88,62 +68,25 @@ const registerUser2 = async (req, res) => {
     //TODO : ERROR HANDLING ON REGISTER
 
     if (user) {
+      const token = generateToken(user._id);
 
-      generateToken(res, user._id);
-
-      res.status(201).json({
+      return res.status(201).json({
         _id: user._id,
         name: user.name,
         email: user.email,
-        role:user.role
+        role: user.role,
+        token, // Include the token in the response
       });
     } else {
-      res.status(400);
-      throw new Error('Invalid user data');
+      return res.status(400).json({ error: 'Invalid user data' });
     }
   } catch (error) {
-    res.status(500);
-    throw new Error(error.message);
+    console.log(error);
+    res.status(500).json({ error});
   }
 };
 
-const registerUser = async (req, res) => {
-  try {
-    const { name, email, password, contact, address, location, role } =
-      req.body;
 
-    const userExists = await User.findOne({ email });
-
-    if (userExists) {
-      res.status(400);
-      throw new Error('user already exists');
-    }
-
-    const user = await User.create({
-      name,
-      email,
-      password,
-      contact,
-      address,
-      location,
-      role,
-    });
-
-    if (user) {
-      const token = generateToken(user._id);
-
-      res.status(201).json({
-        token,
-        exp: 36000 // replace this with the actual expiration time of the token
-      });
-    } else {
-      res.status(400);
-      throw new Error('Invalid user data');
-    }
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
 // @desc logout  user
 // @route POST api/users/logout
 // @access Private
