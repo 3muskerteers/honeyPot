@@ -2,9 +2,8 @@ import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios"; // Corrected import
 import * as SecureStore from "expo-secure-store";
 
-const TOKEN_KEY = "token";
-export const API_URL = "https://api.developbetterapps.com";
-// export const API_URL = "http://localhost:3000/api";
+import {API_URL,TOKEN_KEY} from "../constants/secs"
+
 
 const AuthContext = createContext({});
 
@@ -38,7 +37,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (email, password) => {
     try {
-      const response = await axios.post("https://ab72-105-162-46-35.ngrok-free.app/api/users", {
+      const response = await axios.post(`${API_URL}/users`, {
         email,
         password,
         name: "John Doe",
@@ -58,31 +57,12 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const login2 = async (email, password) => {
-    try {
-      const result = await axios.post(`https://ab72-105-162-46-35.ngrok-free.app/api/users/auth`, { email, password });
-      // Corrected Axios to axios
-      console.log(result.data);
-
-      setAuthState({
-        token: result.data.token,
-        authenticated: true,
-      });
-
-      axios.defaults.headers.common.Authorization = `Bearer ${result.data.token}`;
-      await SecureStore.setItemAsync(TOKEN_KEY, result.data.token);
-      return result
-
-    } catch (e) {
-      return { error: true, msg: e.response.data.msg };
-    }
-  };
-
+  
   const login = async (email, password) => {
     console.log(`Logging in with email: ${email} and password: ${password}`);
   
     try {
-      const result = await axios.post(`https://ab72-105-162-46-35.ngrok-free.app/api/users/auth`, { email, password });
+      const result = await axios.post(`${API_URL}/users/auth`, { email, password });
       console.log('Response data:', result.data);
   
       setAuthState({
