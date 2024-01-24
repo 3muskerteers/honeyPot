@@ -1,57 +1,12 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Login, Welcome, Signup, Home } from './screens';
-import { StatusBar } from 'expo-status-bar';
-import { AuthProvider, useAuth } from './context/AuthContext';
-import { Button } from 'react-native';
+import { View, Text } from 'react-native'
+import React from 'react'
 
-const AuthenticatedStack = createNativeStackNavigator();
-const NonAuthenticatedStack = createNativeStackNavigator();
-
-export default function App() {
+const App = () => {
   return (
-    <AuthProvider>
-      <NavigationContainer>
-        <StatusBar style="light" backgroundColor="#004539" barStyle="light-content" />
-        <Layout />
-      </NavigationContainer>
-    </AuthProvider>
-  );
+    <View>
+      <Text>App</Text>
+    </View>
+  )
 }
 
-const Layout = () => {
-  const { authState, onLogout } = useAuth();
-
-  return authState.authenticated ? (
-    <AuthenticatedStack.Navigator initialRouteName='Home'>
-      <AuthenticatedStack.Screen
-        name="Home"
-        component={Home}
-        options={{
-          headerRight: () => <Button onPress={onLogout} title="Logout" />
-        }}
-      />
-    </AuthenticatedStack.Navigator>
-  ) : (
-    <NonAuthenticatedStack.Navigator initialRouteName='Welcome'>
-      <NonAuthenticatedStack.Screen
-        name="Welcome"
-        component={Welcome}
-        options={{
-          headerShown: false
-        }}
-      />
-      <NonAuthenticatedStack.Screen
-        name="Login"
-        component={Login}
-      />
-      <NonAuthenticatedStack.Screen
-        name="Signup"
-        component={Signup}
-        options={{
-          headerShown: false
-        }}
-      />
-    </NonAuthenticatedStack.Navigator>
-  );
-};
+export default App
