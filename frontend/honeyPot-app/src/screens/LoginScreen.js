@@ -1,17 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const AccountScreen = () => {
+const LoginScreen = () => {
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text >AccountScreen</Text>
+      <Text>LoginScreen</Text>
     </View>
   )
 }
 
-export default AccountScreen
+export default LoginScreen
 
-// Remove the unused styles variable declaration
-// const styles = StyleSheet.create({
-
-// })
+const styles = StyleSheet.create({})

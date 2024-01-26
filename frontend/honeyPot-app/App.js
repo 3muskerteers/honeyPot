@@ -1,12 +1,25 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react';
+import { StatusBar } from 'expo-status-bar';
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+
+//import navigators
+import TabNavigator from './src/navigation/TabNavigator';
+import AuthNavigator from './src/navigation/AuthNavigator';
+
 
 const App = () => {
-  return (
-    <View>
-      <Text>App</Text>
-    </View>
-  )
-}
+  const [isSignedIn, setIsSignedIn] = useState(true);
+  const Stack = createStackNavigator();
 
-export default App
+  return (
+    <NavigationContainer>
+            <StatusBar style="dark" backgroundColor="#FFFFFF" />
+      {isSignedIn ? <TabNavigator /> : <AuthNavigator />}
+    </NavigationContainer>
+  );
+};
+
+export default App;
