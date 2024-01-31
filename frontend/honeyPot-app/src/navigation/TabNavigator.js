@@ -6,7 +6,7 @@ import { useTheme } from 'react-native-paper';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import colors from '../constants/colors';
-import { HomeScreen, AccountScreen, OrdersList,DescriptionScreen,CartScreen } from '../screens/index.screens';
+import { HomeScreen, SearchScreen, OrdersList,DescriptionScreen,CartScreen } from '../screens/index.screens';
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -40,8 +40,8 @@ export default function TabNavigator() {
 
           if (route.name === 'Home') {
             iconName = 'home';
-          } else if (route.name === 'Account') {
-            iconName = 'user';
+          } else if (route.name === 'Search') {
+            iconName = 'search';
           } else if (route.name === 'Orders') {
             iconName = 'list';
           }else if (route.name === 'Cart') {
@@ -53,9 +53,9 @@ export default function TabNavigator() {
       })}
     >
       <Tab.Screen name="Home" component={HomeStack} />
+      <Tab.Screen name="Search" component={SearchScreen} />
       <Tab.Screen name="Cart" component={CartScreen} />
       <Tab.Screen name="Orders" component={OrdersList} />
-      <Tab.Screen name="Account" component={AccountScreen} />
     </Tab.Navigator>
   );
 }
