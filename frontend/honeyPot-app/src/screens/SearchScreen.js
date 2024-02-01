@@ -12,10 +12,13 @@ import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'react-native';
 import Header from '../components/Header';
 import filter from 'lodash.filter';
+import { useNavigation } from '@react-navigation/native';
 
 const API_ENDPOINT = 'https://randomuser.me/api/?results=30';
 
 const SearchScreen = () => {
+  const navigation = useNavigation();
+  
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
@@ -87,7 +90,7 @@ const SearchScreen = () => {
   return (
     <SafeAreaView style={{ flex: 1, top: 20 }}>
       <Header />
-      <View style={{ marginHorizontal: 20, }}>
+      <View style={{ marginHorizontal: 20,marginBottom:150 }}>
         <TextInput
           placeholder="Search"
           autoCapitalize="none"
