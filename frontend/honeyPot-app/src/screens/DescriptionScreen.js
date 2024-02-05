@@ -6,6 +6,9 @@ import { Entypo, Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { foodPackages } from '../components/PackageScroll';
 import { SafeAreaView } from 'react-native-safe-area-context';
+
+
+
 const DescriptionScreen = ({ route, params }) => {
   const navigation = useNavigation();
   const { name,id, description ,imageURL,foods } = route.params;
@@ -57,7 +60,7 @@ const styles = StyleSheet.create({
     top:20,
   },
   groupPackage: {
-    top: -20
+    top: -100,
   },
   image: {
     height: 280, // Adjust this value to change the height of the image

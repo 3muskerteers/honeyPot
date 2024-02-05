@@ -3,7 +3,8 @@ import React from 'react';
 import { useNavigation } from '@react-navigation/native'; // Import useNavigation
 
 
-const PackageCard = ({ name, description,id, imageURL, price ,foods}) => {
+const PackageCard = ({ name, description, id, imageURL, price, foods }) => {
+  // console.log(foods);
   
   const navigation = useNavigation(); // Get navigation object from useNavigation
   return (
