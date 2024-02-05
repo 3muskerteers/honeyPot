@@ -16,11 +16,14 @@ const HomeScreen = ({navigation}) => {
 
 
   return (
-    // <SafeAreaView style={{ paddingTop: insets.top }}>
-    <SafeAreaView >
+    
+     <SafeAreaView >
+    
       <Header />
 
+
       <ScrollView style={{marginBottom:95}}>
+
 
       <View style={{ marginHorizontal: 15 }}>
       <Text h3 style={{  fontWeight: 'bold',paddingBottom:3}}>
@@ -48,9 +51,11 @@ const HomeScreen = ({navigation}) => {
                 marginVertical: 10,
               }}
               containerStyle={{
+
                 width: '80%', // Use a percentage of the screen width
                 alignSelf: 'center', // Center the button horizontally
                 marginVertical: 10,
+
               }}
           titleStyle={{ fontWeight: 'bold' }}
           
@@ -58,7 +63,8 @@ const HomeScreen = ({navigation}) => {
             />
 
         </ScrollView>
-    </SafeAreaView>
+      </SafeAreaView> 
+   
   );
 };
 

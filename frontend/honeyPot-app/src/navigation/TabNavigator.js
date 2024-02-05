@@ -87,6 +87,20 @@ function TabNavigator() {
   const theme = useTheme();
   theme.colors.secondaryContainer = "white" //make tab navigator white 
 
+
+
+  //This home stack allows us to  navigate between the home screen and the description screen using the stack navigator
+
+  const HomeStack = () => { 
+    return (
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="HomeScreen" component={HomeScreen} options={{headerShown:false}}/>
+        <Stack.Screen name="Description" component={DescriptionScreen} options={{headerShown:false}} />
+      </Stack.Navigator>
+    );
+  }
+    
+
   return (
     <Tab.Navigator
       initialRouteName="Home"
