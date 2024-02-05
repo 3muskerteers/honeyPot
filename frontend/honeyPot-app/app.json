@@ -4,11 +4,11 @@
     "slug": "Honey Pot",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon_real.png",
+    "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/icon_real.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#FFC529"
+      "backgroundColor": "#ffffff"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -22,7 +22,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFC529"
+        "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
