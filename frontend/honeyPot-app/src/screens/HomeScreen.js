@@ -21,7 +21,9 @@ const HomeScreen = ({navigation}) => {
     
       <Header />
 
-      <ScrollView> 
+
+      <ScrollView style={{marginBottom:95}}>
+
 
       <View style={{ marginHorizontal: 15 }}>
       <Text h3 style={{  fontWeight: 'bold',paddingBottom:3}}>
@@ -38,7 +40,7 @@ const HomeScreen = ({navigation}) => {
       <Text h5 >Buat momen istimewamu bertema</Text>
 
       </View>
-      <PackageScroll />
+        <PackageScroll />
       <Button
               title="CREATE YOUR PACKAGE"
               buttonStyle={{
@@ -46,15 +48,18 @@ const HomeScreen = ({navigation}) => {
                 borderWidth: 2,
                 borderColor: 'white',
                 borderRadius: 30,
+                marginVertical: 10,
               }}
               containerStyle={{
-                width: 260,
-                marginHorizontal: 50,
-                marginVertical: 60,
+
+                width: '80%', // Use a percentage of the screen width
+                alignSelf: 'center', // Center the button horizontally
+                marginVertical: 10,
+
               }}
           titleStyle={{ fontWeight: 'bold' }}
           
-          onPress={() => navigation.navigate('Cart')}
+          onPress={() => navigation.navigate('Search')}
             />
 
         </ScrollView>

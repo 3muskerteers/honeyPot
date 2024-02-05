@@ -2,6 +2,7 @@
 
 
 import AccountScreen from './AccountScreen';
+import SearchScreen from './SearchScreen';
 import HomeScreen from './HomeScreen';
 import OrdersList from './OrdersList';
 import DescriptionScreen from './DescriptionScreen';
@@ -10,4 +11,4 @@ import RegisterScreen from './RegisterScreen';
 import CartScreen from './CartScreen';
 
 
-export { AccountScreen, HomeScreen, OrdersList, DescriptionScreen, LoginScreen, RegisterScreen, CartScreen}
+export { SearchScreen, AccountScreen,HomeScreen, OrdersList, DescriptionScreen, LoginScreen, RegisterScreen, CartScreen}
