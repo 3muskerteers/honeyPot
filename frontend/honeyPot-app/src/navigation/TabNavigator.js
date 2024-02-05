@@ -23,7 +23,7 @@ export default function TabNavigator() {
     return (
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="HomeScreen" component={HomeScreen} options={{headerShown:false}}/>
-        <Stack.Screen name="Description" component={DescriptionScreen} />
+        <Stack.Screen name="Description" component={DescriptionScreen} options={{headerShown:false}} />
       </Stack.Navigator>
     );
   }
