@@ -8,8 +8,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import colors from '../constants/colors';
 import { HomeScreen,SearchScreen, AccountScreen, OrdersList,DescriptionScreen,CartScreen } from '../screens/index.screens';
 
-const Tab = createMaterialBottomTabNavigator();
-const Stack = createStackNavigator();
+
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
