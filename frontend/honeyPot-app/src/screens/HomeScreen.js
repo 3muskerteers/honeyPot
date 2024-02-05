@@ -16,11 +16,12 @@ const HomeScreen = ({navigation}) => {
 
 
   return (
-    // <SafeAreaView style={{ paddingTop: insets.top }}>
-    <SafeAreaView >
+    
+     <SafeAreaView >
+    
       <Header />
 
-      <ScrollView>
+      <ScrollView> 
 
       <View style={{ marginHorizontal: 15 }}>
       <Text h3 style={{  fontWeight: 'bold',paddingBottom:3}}>
@@ -49,7 +50,7 @@ const HomeScreen = ({navigation}) => {
               containerStyle={{
                 width: 260,
                 marginHorizontal: 50,
-                marginVertical: 10,
+                marginVertical: 60,
               }}
           titleStyle={{ fontWeight: 'bold' }}
           
@@ -57,7 +58,8 @@ const HomeScreen = ({navigation}) => {
             />
 
         </ScrollView>
-    </SafeAreaView>
+      </SafeAreaView> 
+   
   );
 };
 
