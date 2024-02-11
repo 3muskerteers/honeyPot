@@ -74,6 +74,7 @@ const PackageScroll = ({route,navigation}) => {
     data={foodPackages} 
     renderItem={({ item }) => (
       <PackageCard 
+      id={item.id}
         name={item.name} 
         description={item.description} 
         imageURL={item.imageURL} 
