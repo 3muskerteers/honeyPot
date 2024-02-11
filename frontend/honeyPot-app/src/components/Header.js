@@ -1,7 +1,9 @@
-import { StyleSheet, View, Image } from 'react-native';
+import { StyleSheet, View, Image,TouchableOpacity } from 'react-native';
 import React from 'react';
+import {useNavigation} from '@react-navigation/native';
 
 const Header = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.box}>
       <Image
@@ -10,12 +12,17 @@ const Header = () => {
         }}
         style={styles.logoImage}
       />
+
+      <TouchableOpacity onPress={() => navigation.navigate('Account')}>
+
       <Image
         source={{
           uri: 'https://res.cloudinary.com/dchhoja40/image/upload/v1706146346/grill_gbbwvd.jpg',
         }}
         style={styles.userImage}
       />
+        
+        </TouchableOpacity>
     </View>
   );
 };
