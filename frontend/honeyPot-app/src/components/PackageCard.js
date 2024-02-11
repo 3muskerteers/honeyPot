@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native'; // Import useNavigatio
 
 
 const PackageCard = ({ name, description, id, imageURL, price, foods }) => {
-  // console.log(foods);
+  console.log(id);
   
   const navigation = useNavigation(); // Get navigation object from useNavigation
   return (
@@ -14,7 +14,8 @@ const PackageCard = ({ name, description, id, imageURL, price, foods }) => {
       id:id,
       description: description,
       imageURL,
-      foods
+      foods,
+      price,
      
     })}
   >

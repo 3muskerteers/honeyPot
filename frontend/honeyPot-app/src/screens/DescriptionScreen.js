@@ -6,13 +6,16 @@ import { Entypo, Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { foodPackages } from '../components/PackageScroll';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import tailwind from 'twrnc';
+import { useCart } from 'react-use-cart';
 
 
 
 const DescriptionScreen = ({ route, params }) => {
   const navigation = useNavigation();
-  const { name,id, description ,imageURL,foods } = route.params;
-  console.log(foods);
+  const {totalItems, addItem, removeItem, totalUniqueItems , updateItemQuantity} = useCart()
+  const { name,id, description ,imageURL,foods, price } = route.params;
+  // console.log(addItem({ id:id, price:price, description:description , name:name, imageURL:imageURL}));
   return (
     <View style={{ flex: 1 }}>
       <View style={{ ...styles.container, flex: 1 }}>
@@ -21,8 +24,9 @@ const DescriptionScreen = ({ route, params }) => {
           <Entypo name="chevron-left" size={30} color="black" />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.floatingButtonR}>
+        <TouchableOpacity style={styles.floatingButtonR} onPress={()=>addItem({ id:id, price:price, description:description , name:name, imageURL:imageURL})} >
           <Ionicons name="cart-outline" size={30} color="black" />
+          <Text style={tailwind`absolute -right-2 px-2 py-1  bg-white  rounded-full -top-4  font-bold border-orange-200`}>{totalUniqueItems}</Text>
         </TouchableOpacity>
       </View>
 
