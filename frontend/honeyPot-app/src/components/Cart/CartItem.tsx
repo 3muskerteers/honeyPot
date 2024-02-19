@@ -10,7 +10,7 @@ const CartItem = ({ id, imageUrl, orderName, orderPrice, quantity, item }) => {
     return (
 
 
-        <View style={tailwind` bg-white flex flex-row justify-start items-center gap-2 shadow-orange-300 rounded-md shadow-lg mb-4`}>
+        <View style={tailwind` bg-white flex flex-row flex-1 justify-start items-center gap-2 shadow-orange-300 rounded-md shadow-lg mb-4`}>
             <View style={tailwind`rounded-full m-4 `}>
                 <Image source={{ uri: imageUrl }} style={tailwind`w-[100px] h-[100px] rounded-full`} />
             </View>
