@@ -5,6 +5,10 @@ import { Feather } from '@expo/vector-icons';
 import CartItem from './CartItem';
 import { AntDesign } from '@expo/vector-icons';
 import { useCart } from 'react-use-cart';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../Redux/Store';
+import { disableErrorHandling } from 'expo';
+import { increment } from '../../Redux/SLices/CounterSlice';
 
 
 
@@ -14,12 +18,22 @@ const Cart = () => {
     // retrieve cartitems
     const { totalItems, emptyCart, items, totalUniqueItems, removeItem, isEmpty, cartTotal, updateItemQuantity } = useCart()
 
+    const count=useSelector((state:RootState)=> state.count.value)
+
+    const dispatch = useDispatch()
+    
     return (
         <View style={tailwind`px-4`}>
             {/* title */}
             <View >
                 <Text style={tailwind`font-extrabold text-4xl mt-4 text-center`}>Cart</Text>
             </View>
+
+            <TouchableOpacity onPress={()=> dispatch(increment())} style={tailwind`px-6 py-2 bg-gray-400 rounded`}>
+                <Text style={tailwind`text-center text-white`}>Add count</Text>
+            </TouchableOpacity>
+
+            <Text style={tailwind`text-center text-2xl py-4`}>{count}</Text>
 
             {isEmpty ? (
                 <View style={tailwind`flex justify-center items-center`}>
@@ -29,7 +43,7 @@ const Cart = () => {
                 <View>
 
                     <SafeAreaView style={tailwind`mt-4 h-120`}>
-                        <View style={tailwind`flex flex-col my-2 py-2 gap-6 `}>
+                        <View style={tailwind`flex flex-col flex-1 overflow-hidden my-2 py-2 gap-6 `}>
 
                             <FlatList
                                 data={items}
